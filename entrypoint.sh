@@ -52,6 +52,11 @@ if [ "${INPUT_SNAPSHOT}" == "true" ]; then
   docker build $BUILDPARAMS -t ${DOCKERNAME} -t ${SHA_DOCKER_NAME} .
   docker push ${DOCKERNAME}
   docker push ${SHA_DOCKER_NAME}
+elif [ "${INPUT_TAGGING}" == "true" ]; then
+  DOCKER_TAG=$($GITHUB_REF | sed -e 's/refs\/tags\/v//')
+  docker build $BUILDPARAMS -t ${DOCKERNAME} -t ${DOCKERNAME}:${DOCKER_TAG} .
+  docker push ${DOCKERNAME}
+  docker push ${DOCKERNAME}:${DOCKER_TAG}
 else
   docker build $BUILDPARAMS -t ${DOCKERNAME} .
   docker push ${DOCKERNAME}
