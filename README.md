@@ -27,9 +27,9 @@ jobs:
 
 ## Mandatory Arguments
 
-`name` is the name of the image you would like to push
-`username` the login username for the registry
-`password` the login password for the registry
+`name` is the name of the image you would like to push  
+`username` the login username for the registry  
+`password` the login password for the registry  
 
 ## Optional Arguments
 
@@ -59,9 +59,9 @@ with:
 ```
 
 ### snapshot
-Use `snapshot` to push an additional image, which is tagged with {YEAR}{MONTH}{DAY}{HOUR}{MINUTE}{SECOND}{first 6 digits of the git sha}.
+Use `snapshot` to push an additional image, which is tagged with {YEAR}{MONTH}{DAY}{HOUR}{MINUTE}{SECOND}{first 6 digits of the git sha}.  
 The date was inserted to prevent new builds with external dependencies override older builds with the same sha.
-When you would like to think about versioning images, this might be useful.
+When you would like to think about versioning images, this might be useful.  
 
 ```yaml
 with:
@@ -72,8 +72,8 @@ with:
 ```
 
 ### dockerfile
-Use `dockerfile` when you would like to explicitly build a Dockerfile.
-This might be useful when you have multiple DockerImages.
+Use `dockerfile` when you would like to explicitly build a Dockerfile.  
+This might be useful when you have multiple DockerImages.  
 
 ```yaml
 with:
@@ -84,7 +84,7 @@ with:
 ```
 
 ### cache
-Use `cache` when you have big images, that you would only like to build partially (changed layers).
+Use `cache` when you have big images, that you would only like to build partially (changed layers).  
 > CAUTION: This will cache the non changed parts forever. If you use this option, make sure that these parts will be updated by another job!
 
 ```yaml
