@@ -58,6 +58,20 @@ with:
   tagging: true
 ```
 
+### custom tag
+
+Use `tag` to push an additional image, which is tagged with the custom value.
+This can be useful for whenthe action is triggered from refs/heads/master, but you want to tag with a specific value.
+
+```yaml
+with:
+  name: myDocker/repository
+  username: ${{ secrets.DOCKER_USERNAME }}
+  password: ${{ secrets.DOCKER_PASSWORD }}
+  tagging: true
+  tag: ${{ steps.tag.outputs.result }} # eg: 0.6.0
+```
+
 ### snapshot
 Use `snapshot` to push an additional image, which is tagged with {YEAR}{MONTH}{DAY}{HOUR}{MINUTE}{SECOND}{first 6 digits of the git sha}.  
 The date was inserted to prevent new builds with external dependencies override older builds with the same sha.
