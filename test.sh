@@ -196,6 +196,28 @@ Called mock with: logout"
   cleanEnvironment
 }
 
+function itUsesCustomTagIfTaggingConfigured() {
+  export GITHUB_REF='refs/tags/v0.5.0'
+  export INPUT_USERNAME='USERNAME'
+  export INPUT_PASSWORD='PASSWORD'
+  export INPUT_NAME='my/repository'
+  export INPUT_TAGGING='true'
+  export INPUT_TAG='0.6.0'
+  export INPUT_DOCKERFILE='MyDockerFileName'
+  local result=$(exec /entrypoint.sh)
+  local expected="Called mock with: login -u USERNAME --password-stdin
+Called mock with: build -f MyDockerFileName -t my/repository:latest -t my/repository:0.6.0 .
+Called mock with: push my/repository:latest
+Called mock with: push my/repository:0.6.0
+Called mock with: logout"
+  if [ "$result" != "$expected" ]; then
+    echo "Expected: $expected
+    Got: $result"
+    exit 1
+  fi
+  cleanEnvironment
+}
+
 function itLogsIntoAnotherRegistryIfConfigured() {
   export GITHUB_REF='refs/tags/myRelease'
   export INPUT_USERNAME='USERNAME'
@@ -279,6 +301,7 @@ itPushesBranchByShaAndDateInAddition
 itCachesImageFromFormerBuildAndUsesItForSnapshotIfConfigured
 itPushesBranchByShaAndDateInAdditionWithSpecificDockerfile
 itCachesImageFromFormerBuildAndUsesItTaggingIfConfigured
+itUsesCustomTagIfTaggingConfigured
 itLogsIntoAnotherRegistryIfConfigured
 itCachesImageFromFormerBuildIfConfigured
 itErrorsWhenNameWasNotSet
