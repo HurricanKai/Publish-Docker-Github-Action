@@ -1,3 +1,7 @@
+**PLEASE USE [THE ORIGINAL REPO](https://github.com/elgohr/Publish-Docker-Github-Action)**
+Since I modified it it got a bunch of new features, so I doubt you still need this.
+
+
 # Publishes docker containers
 [![Actions Status](https://github.com/HurricanKai/Publish-Docker-Github-Action/workflows/Test/badge.svg)](https://github.com/HurricanKai/Publish-Docker-Github-Action/actions)
 [![Actions Status](https://github.com/HurricanKai/Publish-Docker-Github-Action/workflows/Integration%20Test/badge.svg)](https://github.com/HurricanKai/Publish-Docker-Github-Action/actions)
